@@ -14,7 +14,7 @@ im1 = im;
 im2 = zeros(rows, cols);
 
 % Set the number of iterations for the filtering process
-N = 10; % number of iterations
+N = 1; % number of iterations
 
 % Begin the iterative filtering process
 for k = 1 : N % Iterates N times
