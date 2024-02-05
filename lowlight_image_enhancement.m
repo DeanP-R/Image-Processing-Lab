@@ -4,47 +4,37 @@ close all; clear all; clc;
 % Read the image and convert it to double precision for processing
 im = im2double(imread('low_light\bear.bmp'));
 
-% Determine the size of the image in pixels
-[rows, cols] = size(im);
-
-% Initialize the first working copy of the image
-im1 = im;
-
-% Initialize a matrix to hold the filtered image, starting with zeros
-im2 = zeros(rows, cols);
-
-% Set the number of iterations for the filtering process
-N = 1; % number of iterations
-
-% Begin the iterative filtering process
-for k = 1 : N % Iterates N times
-
-  % Loop over the image pixels, excluding the border pixels
-  for x = 2 : rows - 1
-    for y = 2 : cols - 1 % For each inner pixel
-        
-      % Initialize the sum for the current pixel
-      % Loop over the 3x3 neighborhood of the current pixel
-      for i = -1 : 1  
-        for j = -1 : 1
-         % Accumulate the sum of the current pixel and its neighbors
-         im2(x,y) = im2(x,y) + im1(x+i,y+j); 
-        end 
-      end
-      
-      % After summing the neighbors, average by dividing by the number of elements (9 for a 3x3 kernel)
-      im2(x,y) = im2(x,y)./9;
-      
-    end
-  end
-
-  % Update the working image with the filtered result for the next iteration
-  im1 = im2;
-
-  % Reset the im2 matrix to zeros for the next iteration
-  im2 = zeros(rows, cols);
-
+% Check if the image is color (3 channels)
+[rows, cols, channels] = size(im);
+if channels ~= 3
+    error('The image must be a color image with three channels.');
 end
 
-% Display the original and the filtered image side by side for comparison
-figure, imshow([im,im1]);
+% Initialize the matrix to hold the filtered image
+im_filtered = zeros(rows, cols);
+
+% Set the number of iterations for the filtering process
+N = 1; % number of iterations (adjust as needed)
+K = 10; % Sensitivity constant for weighting (adjust as needed)
+
+% Compute T(x, y) - the maximum intensity across all color channels
+T = max(im, [], 3);
+
+% Apply the filtering scheme to T to obtain U (this needs to be filled in with the filtering process)
+U = T; % Placeholder for the actual filtering of T
+
+% Iterate over each pixel for the filtering (adapted from Task 1a)
+% ... (your filtering code will go here, updating U)
+
+% Enhance each color channel
+epsilon = 0.1; % Small constant to avoid division by zero
+im_enhanced = zeros(rows, cols, channels);
+for ch = 1:channels
+    im_enhanced(:, :, ch) = im(:, :, ch) ./ (U + epsilon);
+end
+
+% Clip values to the range [0, 1] in case of overflow
+im_enhanced = max(min(im_enhanced, 1), 0);
+
+% Display the original and the enhanced image side by side for comparison
+figure, imshow([im, im_enhanced]);
