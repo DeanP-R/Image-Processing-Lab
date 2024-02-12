@@ -57,7 +57,7 @@ subplot(1,2,2),fftshow(ifft2(imf.*g1),'abs'),
 title('Gaussian smoothing');
 
 % Boosting high frequences
-im=im2double(imread('images/trui.tif'));
+im=im2double(imread('images/baboon.png'));
 size(im)
 g2 = mat2gray(fspecial('gaussian',512,5)); 
 imf = fftshift(fft2(im));
