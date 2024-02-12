@@ -48,7 +48,7 @@ title('high frequencies');
 
 % Gaussian low-pass filtering
 g = fspecial('gaussian',256,20); % volume under Gaussian = 1
-maxGaussian = max(g(:)) % therefore the max value of Gaussian is small
+maxGaussian = max(g(:)); % therefore the max value of Gaussian is small
 g1 = mat2gray(g);
 max(g1(:)) % now the max value = 1 
 figure,
@@ -57,7 +57,7 @@ subplot(1,2,2),fftshow(ifft2(imf.*g1),'abs'),
 title('Gaussian smoothing');
 
 % Boosting high frequences
-im=im2double(imread('images/lena.png'));
+im=im2double(imread('images/trui.tif'));
 size(im)
 g2 = mat2gray(fspecial('gaussian',512,5)); 
 imf = fftshift(fft2(im));
