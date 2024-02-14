@@ -27,8 +27,7 @@ filter(x4-50:x4+50, y4-50:y4+50) = 0;
 
 % Apply the notch filter in the frequency domain
 filteredImf = imf .* filter;
-
-figure, imshow(imf), title('Filtered Fourier');
+figure, imshow(log(abs(filteredImf) + 1), []), colormap(), colorbar,  title('Filtered Fourier');
 
 % Inverse Fourier Transform to get back to spatial domain
 filteredIm = real(ifft2(ifftshift(filteredImf)));

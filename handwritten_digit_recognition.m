@@ -15,7 +15,7 @@ for i = 1:20
 end
 
 % Calculate the number of images in each category
-labelCount = countEachLabel(imds)
+labelCount = countEachLabel(imds);
 
 % Each image is 28-by-28-by-1 pixels.
 img = readimage(imds,1);

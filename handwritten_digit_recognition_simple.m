@@ -1,6 +1,4 @@
-close all;
-clear all;
-clc;
+close all; clear all; clc;
 
 % Load Image Data
 digitDatasetPath = fullfile(matlabroot,'toolbox','nnet','nndemos', ...
@@ -17,7 +15,7 @@ for i = 1:20
 end
 
 % Calculate the number of images in each category
-labelCount = countEachLabel(imds)
+labelCount = countEachLabel(imds);
 
 % Each image is 28-by-28-by-1 pixels.
 img = readimage(imds,1);
@@ -39,14 +37,14 @@ layers = [
 % hidden layers
 
 % 1st hidden layer
-fullyConnectedLayer(40)
+fullyConnectedLayer(50)
 batchNormalizationLayer
 reluLayer  
 
 % 2nd hiden layer
-fullyConnectedLayer(40)
+fullyConnectedLayer(30)
 batchNormalizationLayer
-reluLayer  
+reluLayer
 
 % 3rd hiden layer
 fullyConnectedLayer(20)
