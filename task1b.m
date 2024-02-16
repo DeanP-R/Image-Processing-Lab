@@ -1,5 +1,5 @@
 % Read the image and convert it to double precision for processing
-im = im2double(imread('low_light\bear.bmp'));
+im = im2double(imread('low_light\street.bmp'));
 
 % Check if the image is color (3 channels)
 [rows, cols, channels] = size(im);
@@ -12,7 +12,7 @@ T = zeros(rows, cols);
 U = zeros(rows, cols);  % This will hold the filtered T, which is U in the task description
 
 % Set the number of iterations for the filtering process
-N = 1; % number of iterations (adjust as needed)
+N = 15; % number of iterations (adjust as needed)
 K = 10; % Sensitivity constant for weighting (adjust as needed)
 
 % Compute T(x, y) - the maximum intensity across all color channels
