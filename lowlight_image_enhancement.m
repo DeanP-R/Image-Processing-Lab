@@ -1,5 +1,5 @@
 % Read the image and convert it to double precision for processing
-im = im2double(imread('low_light\bridge.jpg'));
+im = im2double(imread('low_light\bear.bmp'));
 
 % Check if the image is color (3 channels)
 [rows, cols, channels] = size(im);
