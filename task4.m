@@ -75,4 +75,4 @@ net = trainNetwork(imdsTrain,layers,options);
 YPred = classify(net,imdsValidation);
 YValidation = imdsValidation.Labels;
 
-accuracy = sum(YPred == YValidation)/numel(YValidation)
+accuracy = sum(YPred == YValidation)/numel(YValidation);
